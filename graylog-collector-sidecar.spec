@@ -4,7 +4,7 @@
 Summary:	Manage log collectors through Graylog
 Name:		graylog-collector-sidecar
 Version:	0.1.4
-Release:	0.4
+Release:	0.6
 License:	GPL v3
 Group:		Applications
 Source0:	https://github.com/Graylog2/collector-sidecar/releases/download/%{version}/collector-sidecar-%{version}.tar.gz
@@ -38,7 +38,7 @@ cp -p %{SOURCE1} .
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/graylog/collector-sidecar,/etc/rc.d/init.d,%{_sbindir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/graylog/collector-sidecar,/etc/rc.d/init.d,%{_sbindir},/var/log/graylog/collector-sidecar}
 install -p graylog-collector-sidecar $RPM_BUILD_ROOT%{_sbindir}
 cp -p collector_sidecar.yml $RPM_BUILD_ROOT%{_sysconfdir}/graylog/collector-sidecar
 install -p %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/collector-sidecar
@@ -63,3 +63,5 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/graylog/collector-sidecar/collector_sidecar.yml
 %attr(754,root,root) /etc/rc.d/init.d/collector-sidecar
 %attr(755,root,root) %{_sbindir}/graylog-collector-sidecar
+%dir /var/log/graylog
+%dir /var/log/graylog/collector-sidecar
