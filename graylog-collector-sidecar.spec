@@ -2,12 +2,12 @@
 # - build from source: https://github.com/Graylog2/collector-sidecar#compile
 
 Summary:	Manage log collectors through Graylog
-Name:		collector-sidecar
+Name:		graylog-collector-sidecar
 Version:	0.1.4
 Release:	0.1
 License:	GPL v3
 Group:		Applications
-Source0:	https://github.com/Graylog2/collector-sidecar/releases/download/%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/Graylog2/collector-sidecar/releases/download/%{version}/collector-sidecar-%{version}.tar.gz
 # Source0-md5:	8728b5e9310210e91f9a1f5c46160d8d
 URL:		https://github.com/Graylog2/collector-sidecar
 ExclusiveArch:	%{ix86} %{x8664}
@@ -24,10 +24,10 @@ collectors.
 %prep
 %setup -qc
 %ifarch %{ix86}
-mv %{name}/%{version}/linux/386/graylog-collector-sidecar .
+mv collector-sidecar/%{version}/linux/386/%{name} .
 %endif
 %ifarch %{x8664}
-mv %{name}/%{version}/linux/amd64/graylog-collector-sidecar .
+mv collector-sidecar/%{version}/linux/amd64/%{name} .
 %endif
 
 %install
